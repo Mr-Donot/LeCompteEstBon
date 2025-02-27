@@ -4,6 +4,7 @@ let expression = "";
 let usedNumbers = [];
 let solutionExpression = "";
 
+
 function generateValidTarget() {
     let ops = ['+', '-', '*', '/'];
     let valid = false;
