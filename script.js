@@ -4,7 +4,6 @@ let expression = "";
 let usedNumbers = [];
 let solutionExpression = "";
 
-
 function generateValidTarget() {
     let ops = ['+', '-', '*', '/'];
     let valid = false;
@@ -38,6 +37,7 @@ function initGame() {
     document.getElementById('target').textContent = target;
     document.getElementById('expression').textContent = "";
     document.getElementById('result').textContent = "";
+    clearExpression();
 }
 
 function addToExpression(value, btn) {
@@ -52,7 +52,7 @@ function deleteLastCharacter() {
     if (usedNumbers.length > 0) {
         let lastUsed = usedNumbers.pop();
         let valueToRemove = lastUsed.value.toString();
-        expression = expression.trim().slice(0, -(valueToRemove.length + 2)).trim();
+        expression = expression.trim().replace(new RegExp(`\s${valueToRemove}\s*$`), '').trim();
         document.getElementById('expression').textContent = expression;
         lastUsed.btn.classList.remove('used');
         lastUsed.btn.disabled = false;
@@ -91,3 +91,33 @@ function showSolution() {
 }
 
 initGame();
+
+/* CSS Fixes */
+const style = document.createElement('style');
+style.innerHTML = `
+    .expression-box {
+        max-width: 90%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .num-btn {
+        font-size: 1.5em;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 10px;
+        background: #ff4757;
+        color: white;
+        border: none;
+        cursor: pointer;
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .num-btn:hover {
+        background: #ff6b81;
+    }
+    .num-btn.used {
+        background: #ccc;
+        color: #666;
+        cursor: not-allowed;
+    }
+`;
+document.head.appendChild(style);
