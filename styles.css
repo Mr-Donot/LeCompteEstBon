@@ -1,0 +1,90 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #FF6B6B, #6B8EFF);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    color: black;
+}
+
+.numbers,
+.target {
+    font-size: 2em;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.expression-box {
+    background: #eee;
+    padding: 15px;
+    font-size: 1.8em;
+    border-radius: 10px;
+    min-height: 50px;
+    display: inline-block;
+    margin-bottom: 15px;
+    width: 90%;
+    max-width: 600px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    font-size: 1.5em;
+    margin: 8px;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: #ff4757;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background: #ff6b81;
+}
+
+.result-box {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 15px;
+    color: #ff4757;
+}
+
+.number-buttons .btn,
+.operator-buttons .btn {
+    flex: 1 1 20%;
+    max-width: 80px;
+}
+
+@media (max-width: 768px) {
+    .btn {
+        font-size: 1.2em;
+        padding: 12px;
+    }
+
+    .expression-box {
+        width: 100%;
+        max-width: 500px;
+    }
+}
