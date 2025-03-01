@@ -33,16 +33,16 @@ function generateValidTarget() {
 function initGame() {
     generateValidTarget();
     usedNumbers = [];
+    expression = "";
     document.getElementById('numbers').innerHTML = numbers.map(num => `<button class='num-btn' onclick='addToExpression(${num}, this)'>${num}</button>`).join(' ');
     document.getElementById('target').textContent = target;
     document.getElementById('expression').textContent = "";
     document.getElementById('result').textContent = "";
-    clearExpression();
 }
 
 function addToExpression(value, btn) {
     expression += ` ${value} `;
-    document.getElementById('expression').textContent = expression;
+    document.getElementById('expression').textContent = expression.trim();
     usedNumbers.push({ value, btn });
     btn.classList.add('used');
     btn.disabled = true;
@@ -50,14 +50,26 @@ function addToExpression(value, btn) {
 
 function deleteLastCharacter() {
     if (usedNumbers.length > 0) {
-        let lastUsed = usedNumbers.pop();
-        let valueToRemove = lastUsed.value.toString();
-        expression = expression.trim().replace(new RegExp(`\s${valueToRemove}\s*$`), '').trim();
+        const lastUsed = usedNumbers.pop();
+        let tokens = expression.trim().split(/\s+/);
+        let idx = -1;
+        for (let i = tokens.length - 1; i >= 0; i--) {
+            if (tokens[i] === String(lastUsed.value)) {
+                idx = i;
+                break;
+            }
+        }
+        if (idx !== -1) {
+            tokens.splice(idx, 1);
+        }
+        expression = tokens.join(' ');
+        expression = expression.replace(/([+\-*/])\s*$/, '').trim();
         document.getElementById('expression').textContent = expression;
         lastUsed.btn.classList.remove('used');
         lastUsed.btn.disabled = false;
     }
 }
+
 
 function clearExpression() {
     expression = "";

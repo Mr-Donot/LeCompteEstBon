@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Compte est Bon</title>
+    <link rel="icon" type="image/ico" href="img/favicon.ico">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Le Compte est Bon</h1>
-        <div class="target">Nombre cible: <span id="target"></span></div>
+        <div class="target">Cible : <span id="target"></span></div>
         <div class="numbers" id="numbers"></div>
         <div id="expression" class="expression-box"></div>
         <div class="buttons action-buttons">
             <button class="btn" onclick="clearExpression()">🗑️</button>
-            <button class="btn" onclick="deleteLastCharacter()">⬅️</button>
+            <button class="btn" onclick="{deleteLastCharacter();deleteLastCharacter()}">⬅️</button>
             <button class="btn" onclick="checkResult()">✅</button>
             <button class="btn" onclick="initGame()">🔄</button>
             <button class="btn" onclick="showSolution()">💡</button>
